@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html class="text-gray-900  antialiased leading-tight">
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Counter</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src="https://unpkg.com/vue@next"></script>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-blue-700">
+    <div id="app">
+        <div class="mt-56 rounded-lg max-w-sm bg-blue-100 mx-auto mt-52 p-8 shadow-xl">
+            <p class="bold p-2 text-center text-xl">{{counter}}</p>
+            <button @click="this.counter++" class="w-full hover:bg-blue-400 py-2 px-3 my-2 rounded bg-blue-500 text-white">Increment</button>
+            <button @click="addComponent" class="w-full hover:bg-blue-400 py-2 px-3 my-2 rounded bg-blue-100 border border-blue-800">Add Component</button>
+            <dummy-component v-for="item in components" :id="item.id"/>
+        </div>
+    </div>
+    <script>
+        const CounterApp = {
+            data() {
+                return {
+                    counter: 0,
+                    components: []
+                }
+            },
+            methods: {
+                addComponent: function () {
+                    this.components.push({id:this.components.length + 1})
+                }
+            }
+        }
+
+        const app = Vue.createApp(CounterApp)
+
+        app.component('dummyComponent', {
+            template: '<div class="my-1 bg-blue-200 p-2 border border-blue-300 rounded">This component has an ID of {{id}}</div>',
+            props: {
+                id: Number
+            }
+        })
+
+        app.mount('#app')
+    </script>
+</body>
+
+</html>
