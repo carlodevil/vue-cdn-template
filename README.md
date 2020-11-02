@@ -48,6 +48,6 @@ This template can be used as a user snippet for html files in VS Code. In order 
 }
 ```
 
-1. Save snippet
+4. Save snippet
 
 You will now be able to call the code snippet in VS Code by typing *vuetail*, *vue-tail*, or *vue-tailwindcss* and clicking enter.
